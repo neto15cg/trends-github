@@ -8,18 +8,40 @@ import {
   NavigationParams,
 } from 'react-navigation';
 
+import {useSelector, useDispatch} from 'react-redux';
+import {addFavorite, removeFavorite} from 'store/ducks/repository';
+
 export interface Props {
   navigation?: NavigationScreenProp<NavigationState & NavigationParams>;
 }
 
 export default function Trendings(props: Props) {
-  const [favorite, setFavorite] = useState(false);
   const [repository, setRepository] = useState({} as any);
+  const dispatch = useDispatch();
+
+  const listFavorites = useSelector(
+    (state: any) => state.repository.data.favorites,
+  );
+
+  console.log(listFavorites);
 
   useEffect(() => {
     const params = props.navigation && props.navigation.getParam('repository');
     setRepository(params);
   });
+
+  function verifyFavorite() {
+    const verify = listFavorites.find(
+      (item: any) => item.databaseId === repository.databaseId,
+    );
+
+    return verify;
+  }
+  function handleFavorite() {
+    verifyFavorite()
+      ? dispatch(removeFavorite(repository))
+      : dispatch(addFavorite(repository));
+  }
 
   return (
     <View style={styles.container}>
@@ -32,23 +54,21 @@ export default function Trendings(props: Props) {
       <View style={styles.subConainer}>
         <AntDesign name="star" color="#5f5e69" size={18} />
         <Text style={styles.title}>
-          {repository && repository.stargazers.totalCount}
+          {repository &&
+            repository.stargazers &&
+            repository.stargazers.totalCount}
         </Text>
       </View>
       <View style={styles.subConainer}>
         <AntDesign name="exclamationcircleo" color="#5f5e69" size={18} />
         <Text style={styles.title}>
-          {repository && repository.issues.totalCount}
+          {repository && repository.issues && repository.issues.totalCount}
         </Text>
       </View>
       <View style={styles.subConainer}>
         <AntDesign name="fork" color="#5f5e69" size={18} />
         <Text style={styles.title}>{repository && repository.forkCount}</Text>
       </View>
-      {/* <View style={styles.subConainer}>
-        <MaterialIcons name="person" color="#5f5e69" size={18} />
-        <Text style={styles.title}>{mock.contributors}</Text>
-      </View> */}
       <View style={styles.subConainer}>
         <AntDesign name="link" color="#5f5e69" size={18} />
         <Text style={styles.title}>{repository && repository.url}</Text>
@@ -61,21 +81,20 @@ export default function Trendings(props: Props) {
       <TouchableOpacity
         style={{
           ...styles.button,
-          backgroundColor: favorite ? '#000' : '#ccc',
+          backgroundColor: verifyFavorite() ? '#000' : '#ccc',
         }}
-        onPress={() => setFavorite(favorite ? false : true)}>
+        onPress={() => handleFavorite()}>
         <AntDesign
           name="heart"
-          color={favorite ? '#fff' : '#5f5e69'}
+          color={verifyFavorite() ? '#fff' : '#5f5e69'}
           size={18}
         />
-
         <Text
           style={{
             ...styles.textButton,
-            color: favorite ? '#fff' : '#5f5e69',
+            color: verifyFavorite() ? '#fff' : '#5f5e69',
           }}>
-          {`${favorite ? 'REMOVER' : 'FAVORITAR'}`}
+          {`${verifyFavorite() ? 'REMOVER' : 'FAVORITAR'}`}
         </Text>
       </TouchableOpacity>
     </View>
