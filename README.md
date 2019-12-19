@@ -20,7 +20,7 @@ yarn install
 
 ## Uso
 
-Para iniciar o React Native:
+- Para iniciar o React Native:
 
 ```bash
 yarn start
@@ -32,7 +32,7 @@ ou
 react-native start
 ```
 
-Para rodar o projeto no seu dispositivo ou no emulador android:
+- Para rodar o projeto no seu dispositivo ou no emulador android:
 
 ```bash
 yarn android
