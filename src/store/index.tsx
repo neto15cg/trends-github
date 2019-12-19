@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import {rootReducer} from './ducks';
 
 const persistConfig = {
-  key: 'skilopay',
+  key: 'trendsgithub',
   storage: AsyncStorage,
   whitelist: [],
 };

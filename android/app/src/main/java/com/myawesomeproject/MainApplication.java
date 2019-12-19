@@ -1,4 +1,4 @@
-package com.myawesomeproject;
+package com.trendsgithub;
 
 import android.app.Application;
 import android.content.Context;
