@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  ActivityIndicator,
-  Text,
-  View,
-} from 'react-native';
+import {StyleSheet, ScrollView, ActivityIndicator, View} from 'react-native';
 import Trending from 'components/Trending';
 import {
   NavigationScreenProp,
@@ -54,18 +48,22 @@ export default function screens(props: Props) {
           </View>
         ) : (
           <ScrollView contentContainerStyle={styles.container}>
-            {data.search.nodes.map((item: any) => {
-              return (
-                <Trending
-                  key={item.databaseId}
-                  name={item.nameWithOwner}
-                  stars={item.stargazers.totalCount}
-                  onPress={() => {
-                    props.navigation.navigate('Details', {repository: item});
-                  }}
-                />
-              );
-            })}
+            {data.search
+              ? data.search.nodes.map((item: any) => {
+                  return (
+                    <Trending
+                      key={item.databaseId}
+                      name={item.nameWithOwner}
+                      stars={item.stargazers.totalCount}
+                      onPress={() => {
+                        props.navigation.navigate('Details', {
+                          repository: item,
+                        });
+                      }}
+                    />
+                  );
+                })
+              : undefined}
           </ScrollView>
         );
       }}

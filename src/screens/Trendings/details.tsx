@@ -1,50 +1,61 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {
+  NavigationScreenProp,
+  NavigationState,
+  NavigationParams,
+} from 'react-navigation';
 
-const mock = {
-  name: 'xingshaocheng/architect-awesome',
-  stars: 15151,
-  issues: 1512,
-  forks: 232,
-  contributors: 121,
-  url: 'https://github.com/xingshaocheng/architect-awesome',
-  description: '后端架构师技术图谱',
-};
+export interface Props {
+  navigation?: NavigationScreenProp<NavigationState & NavigationParams>;
+}
 
-export default function Trendings() {
+export default function Trendings(props: Props) {
   const [favorite, setFavorite] = useState(false);
+  const [repository, setRepository] = useState({} as any);
+
+  useEffect(() => {
+    const params = props.navigation && props.navigation.getParam('repository');
+    setRepository(params);
+  });
 
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <AntDesign name="book" color="#5f5e69" size={18} />
-        <Text style={styles.title}>{mock.name}</Text>
+        <Text style={styles.title}>
+          {repository && repository.nameWithOwner}
+        </Text>
       </View>
       <View style={styles.subConainer}>
         <AntDesign name="star" color="#5f5e69" size={18} />
-        <Text style={styles.title}>{mock.stars}</Text>
+        <Text style={styles.title}>
+          {repository && repository.stargazers.totalCount}
+        </Text>
       </View>
       <View style={styles.subConainer}>
         <AntDesign name="exclamationcircleo" color="#5f5e69" size={18} />
-        <Text style={styles.title}>{mock.issues}</Text>
+        <Text style={styles.title}>
+          {repository && repository.issues.totalCount}
+        </Text>
       </View>
       <View style={styles.subConainer}>
         <AntDesign name="fork" color="#5f5e69" size={18} />
-        <Text style={styles.title}>{mock.forks}</Text>
+        <Text style={styles.title}>{repository && repository.forkCount}</Text>
       </View>
-      <View style={styles.subConainer}>
+      {/* <View style={styles.subConainer}>
         <MaterialIcons name="person" color="#5f5e69" size={18} />
         <Text style={styles.title}>{mock.contributors}</Text>
-      </View>
+      </View> */}
       <View style={styles.subConainer}>
         <AntDesign name="link" color="#5f5e69" size={18} />
-        <Text style={styles.title}>{mock.url}</Text>
+        <Text style={styles.title}>{repository && repository.url}</Text>
       </View>
       <View style={styles.subConainer}>
         <MaterialIcons name="description" color="#5f5e69" size={18} />
-        <Text style={styles.title}>{mock.description}</Text>
+        <Text style={styles.title}>{repository && repository.description}</Text>
       </View>
 
       <TouchableOpacity
