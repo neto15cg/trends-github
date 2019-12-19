@@ -2,48 +2,48 @@
 
 Este é um desafio para testar seus conhecimentos em javascript, React-Native e Graphql.
 
-# Obrigatório
+# Instruções de uso
 
-O projeto deve ser desenvolvido em React-Native e Graphql consumindo a [api do Github](https://developer.github.com/v4/).
+## Configuração
 
-A lista de repositórios da tela de Trending deve ser recuperada através do Graphql.
+Crie sua chave de autenticação para o github [seguindo as instruções](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
+Lembre-se de permitir as [seguintes ações](https://developer.github.com/v4/guides/forming-calls/#authenticating-with-graphql).
+Renomeie o arquivo `.env.example` para `.env` e adicione sua chave recém criada.
 
-# Favoritos do github
+## Instalação
 
-Seu objetivo é replicar a tela de [Trending do github](https://github.com/trending) no aplicativo mobile.
+Para instalar todos os pacotes:
 
-O layout deve possuir duas tabs. Uma na qual serão listados os repositórios nos Trending do do Github e outra para listar os repositórios que foram favoritados pelo usuário enquanto ele estiver com o aplicativo aberto (Note que não são os repositórios favoritados por uma conta do github).
+```bash
+yarn install
+```
 
-A tela de **Trending** deve:
+## Uso
 
-- Listar repositórios
-  - Ao entrar no aplicativo, deve exibir a lista de repositórios nos trending do github com o nome do repositório e quantidade de stars.
-  - Ao clicar em um repositório da lista, deve exibir os detalhes do repositório individual: (Nome, quantidade de stars, quantidade de issues abertas, quantidade de forks, Lista de colaboradores, Url do repositório e descrição do repositório)
-- Permitir favoritar
-  - Os items da lista devem possuir um botão que permita o usuário adicionar este repositório a lista (local) de repositórios favoritos
-- Permitir remover dos favoritos
-  - Ao clicar novamente no botão de favoritar, o repositório deve ser excluído da lista de repositórios favoritos
+### Para iniciar o React Native
 
-A tela de **Favoritos** deve:
+```bash
+yarn start
+```
 
-- Exibir a quantidade de repositórios favoritados pelo usuário.
-- Lista os repositórios favoritados
-  - Ao entrar na aba favoritos, deve exibir a lista de repositórios favoritados pelo usuário da mesma forma que é exibido na tela de Trending. Com a mesma ação de quando o item é clicado.
-- Permitir remover dos favoritos
-  - Ao clicar no botão de remover dos favoritos do item, o item deve ser instantaneamente dessa lista
+ou
 
-# Diferenciais
+```bash
+react-native start
+```
 
-- Utilizar Apollo-client
-- Criar issues e resolvê-las a partir de pull requests
-- Documentação no código e repositório
-- Arquivos pequenos com poucas responsabilidades
-- Estado da aplicação bem estruturado
-- Usabilidade e feedback para o usuário no carregamento da consulta
-- Seguir algum Javascript Style Guide
-- Utilizar alguma ferramenta de CI
-- Testes unitários
+### Para rodar o projeto no seu dispositivo ou no emulador android
 
----
+```bash
+yarn android
+```
 
-Este desafio foi inspirado em: [Jusbrasil:Challenge](https://github.com/jusbrasil/careers/blob/master/challenges/02-carrinho-de-compras.md)
+ou
+
+```bash
+react-native run-android
+```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

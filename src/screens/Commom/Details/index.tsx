@@ -7,7 +7,6 @@ import {
   NavigationState,
   NavigationParams,
 } from 'react-navigation';
-
 import {useSelector, useDispatch} from 'react-redux';
 import {addFavorite, removeFavorite} from 'store/ducks/repository';
 
@@ -22,8 +21,6 @@ export default function Trendings(props: Props) {
   const listFavorites = useSelector(
     (state: any) => state.repository.data.favorites,
   );
-
-  console.log(listFavorites);
 
   useEffect(() => {
     const params = props.navigation && props.navigation.getParam('repository');

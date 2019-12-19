@@ -4,7 +4,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Trenddings from 'screens/Trendings';
 import Favorites from 'screens/Favorites';
-import Details from 'screens/Trendings/details';
+import Details from 'screens/Commom/Details';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -28,6 +28,12 @@ const FavoriteStack = createStackNavigator({
     screen: Favorites,
     navigationOptions: {
       header: null,
+    },
+  },
+  Details: {
+    screen: Details,
+    navigationOptions: {
+      title: 'Details',
     },
   },
 });

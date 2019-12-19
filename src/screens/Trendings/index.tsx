@@ -8,7 +8,6 @@ import {
 } from 'react-navigation';
 import gpl from 'graphql-tag';
 import {Query} from 'react-apollo';
-import {addFavorite} from 'store/ducks/repository';
 
 const REPOSITORIES = gpl`
 {
