@@ -2,6 +2,8 @@
 
 Este é um desafio para testar seus conhecimentos em javascript, React-Native e Graphql.
 
+![image](https://media.giphy.com/media/XHH35RCHcs2MvqH8hc/giphy.gif)
+
 # Instruções de uso
 
 ## Configuração
